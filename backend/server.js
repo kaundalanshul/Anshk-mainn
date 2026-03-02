@@ -1,0 +1,46 @@
+import express from 'express'
+import cors from 'cors'
+import 'dotenv/config'
+import connectDB from './config/mongodb.js'
+import connectCloudinary from './config/cloudinary.js'
+import userRouter from './routes/userRoute.js'
+import productRouter from './routes/productRoute.js'
+import cartRouter from './routes/cartRoute.js'
+import orderRouter from './routes/orderRoute.js'
+import contentRouter from './routes/contentRoute.js'
+import projectRouter from './routes/projectRoute.js'
+import contactRouter from './routes/contactRoute.js'
+
+// App Config
+const app = express()
+const port = process.env.PORT || 4000;
+// Optionally skip DB connect for quick local testing (set SKIP_DB=true in env)
+if (process.env.SKIP_DB === 'true') {
+    console.log('SKIP_DB=true — skipping MongoDB connect (useful for local email testing)');
+} else {
+    connectDB()
+}
+if (process.env.SKIP_DB === 'true') {
+    console.log('SKIP_DB=true — skipping Cloudinary connect (useful for local email testing)');
+} else {
+    connectCloudinary()
+}
+
+// middlewares
+app.use(express.json())
+app.use(cors())
+
+// api endpoints
+app.use('/api/user', userRouter)
+app.use('/api/product', productRouter)
+app.use('/api/cart', cartRouter)
+app.use('/api/order', orderRouter)
+app.use('/api/content', contentRouter)
+app.use('/api/project', projectRouter)
+app.use('/api/contact', contactRouter)
+
+app.get('/', (req, res) => {
+    res.send("API Working")
+})
+
+app.listen(port, () => console.log('Server started on PORT : ' + port))
