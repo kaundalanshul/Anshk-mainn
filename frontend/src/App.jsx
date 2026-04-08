@@ -36,7 +36,7 @@ const App = () => {
       <Navbar />
 
       {/* ✅ Main Routes */}
-      <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
+      <div className="bg-white dark:bg-slate-950 px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />

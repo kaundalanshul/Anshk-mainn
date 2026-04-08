@@ -59,11 +59,11 @@ doc.fillColor(sidebarTextColor).text('kaundalanshul725@gmail.com', leftMargin, y
 yPos += 40;
 
 doc.fillColor('#cbd5e0').text('LinkedIn:', leftMargin, yPos);
-doc.fillColor(sidebarTextColor).text('linkedin.com/in/karnail-singh-972603248', leftMargin, yPos + 12, { width: sidebarContentWidth });
+doc.fillColor(sidebarTextColor).text('linkedin.com/in/anshul-kaundal', leftMargin, yPos + 12, { width: sidebarContentWidth });
 yPos += 40;
 
 doc.fillColor('#cbd5e0').text('GitHub:', leftMargin, yPos);
-doc.fillColor(sidebarTextColor).text('github.com/KarnailSingh87', leftMargin, yPos + 12, { width: sidebarContentWidth });
+doc.fillColor(sidebarTextColor).text('github.com/AnshulKaundal', leftMargin, yPos + 12, { width: sidebarContentWidth });
 yPos += 50;
 
 // Skills
@@ -96,7 +96,8 @@ const mainContentWidth = pageWidth - sidebarWidth - 80;
 let mainY = 60;
 
 // Header (will be overwritten by fetched data if available)
-let headerName = 'Anshul Kaundal';
+const defaultName = 'Anshul Kaundal';
+let headerName = defaultName;
 let headerRole = 'FULL STACK DEVELOPER';
 
 doc.font('Helvetica-Bold').fontSize(36).fillColor(mainTextColor)
@@ -181,8 +182,12 @@ const tryFetchAndRegenerate = async () => {
       const res = await axios.get(`${backend}/api/content/about`);
       if (res.data && res.data.success && res.data.data) {
          const data = res.data.data;
-         // Update header name/role and profile bio
-         headerName = data.name || headerName;
+         // Update header name/role and profile bio; enforce default name if backend returns an old placeholder
+         if (data.name && data.name.toLowerCase().indexOf('karnail') === -1) {
+            headerName = data.name;
+         } else {
+            headerName = defaultName;
+         }
          headerRole = data.role || headerRole;
 
          // Re-create the PDF with updated values: end current and create a new one

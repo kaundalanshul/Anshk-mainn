@@ -47,7 +47,7 @@ const Hero = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className="relative w-full min-h-[25vh] lg:h-[80vh] flex items-center justify-center overflow-hidden bg-white rounded-3xl border border-gray-100 shadow-lg py-2 lg:py-0"
+      className="relative w-full min-h-[25vh] lg:h-[80vh] flex items-center justify-center overflow-hidden bg-white dark:bg-slate-900 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-lg py-2 lg:py-0"
     >
       {/* Background Glows */}
       <div className="absolute w-[400px] h-[400px] bg-purple-500/5 blur-[150px] rounded-full -top-20 -left-20 z-0" />
@@ -87,7 +87,7 @@ const Hero = () => {
             transition={{ delay: 0.6 }}
             className="text-lg sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-2 sm:mb-6 leading-tight"
           >
-            <span className="text-gray-900 block">{hero.titlePrefix}</span>
+            <span className="text-gray-900 dark:text-white block">{hero.titlePrefix}</span>
             <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 text-transparent bg-clip-text block mt-1">
               {hero.highlightName}
             </span>
@@ -97,7 +97,7 @@ const Hero = () => {
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.7 }}
-            className="text-gray-600 text-[10px] sm:text-xl mb-3 sm:mb-8 max-w-xl mx-0 leading-relaxed line-clamp-3 sm:line-clamp-none"
+            className="text-gray-600 dark:text-gray-300 text-[10px] sm:text-xl mb-3 sm:mb-8 max-w-xl mx-0 leading-relaxed line-clamp-3 sm:line-clamp-none"
           >
             {hero.subtitle}
           </motion.p>
@@ -131,8 +131,8 @@ const Hero = () => {
           >
             {(hero.stats || []).map((stat, index) => (
               <div key={index} className="text-left">
-                <p className="text-sm sm:text-3xl font-bold text-gray-900">{stat.value}</p>
-                <p className="text-gray-500 text-[8px] sm:text-sm">{stat.label}</p>
+                <p className="text-sm sm:text-3xl font-bold text-gray-900 dark:text-white">{stat.value}</p>
+                <p className="text-gray-500 dark:text-gray-400 text-[8px] sm:text-sm">{stat.label}</p>
               </div>
             ))}
           </motion.div>

@@ -32,10 +32,10 @@ const ProjectsGrid = () => {
   }, []);
   return (
     <section id="projects" className="py-2 md:py-10">
-      <div className="relative overflow-hidden rounded-3xl bg-white border border-gray-100 shadow-sm">
+      <div className="relative overflow-hidden rounded-3xl bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-700 shadow-sm">
         {/* Background Elements */}
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-purple-50 to-transparent -z-10" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-50 rounded-full blur-3xl -z-10" />
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-purple-50 dark:from-purple-900/20 to-transparent -z-10" />
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-50 dark:bg-blue-900/20 rounded-full blur-3xl -z-10" />
 
         <div className="px-4 py-4 md:px-12 md:py-12">
           <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">Featured Projects</h2>
@@ -43,13 +43,13 @@ const ProjectsGrid = () => {
             {loading ? (
               // simple skeleton placeholders while loading
               Array.from({ length: 3 }).map((_, i) => (
-                <article key={`skeleton-${i}`} className="rounded-2xl overflow-hidden shadow-lg bg-white border border-gray-100 animate-pulse">
-                  <div className="relative h-[300px] sm:h-[400px] bg-gray-100" />
+                <article key={`skeleton-${i}`} className="rounded-2xl overflow-hidden shadow-lg bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 animate-pulse">
+                  <div className="relative h-[300px] sm:h-[400px] bg-gray-100 dark:bg-gray-700" />
                 </article>
               ))
             ) : projects.length === 0 ? (
               <div className="col-span-1 md:col-span-3 flex items-center justify-center p-12">
-                <div className="text-center text-gray-500">
+                <div className="text-center text-gray-500 dark:text-gray-400">
                   <p className="text-lg font-medium">No projects found.</p>
                   <p className="text-sm mt-2">Projects will appear here once they're added.</p>
                 </div>
@@ -62,7 +62,7 @@ const ProjectsGrid = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                   whileHover={{ y: -8 }}
-                  className="rounded-2xl overflow-hidden shadow-lg bg-white group cursor-pointer border border-gray-100"
+                  className="rounded-2xl overflow-hidden shadow-lg bg-white dark:bg-gray-800 group cursor-pointer border border-gray-100 dark:border-gray-700"
                 >
                   <Link to={`/project/${p._id || p.id}`}>
                     <div className="relative overflow-hidden h-[300px] sm:h-[400px]">

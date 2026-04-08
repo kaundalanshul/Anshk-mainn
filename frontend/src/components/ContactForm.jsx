@@ -38,14 +38,14 @@ const ContactForm = () => {
   };
 
   const inputClasses = (field) => `
-    w-full px-4 py-4 pl-12 bg-gray-50 border-2 rounded-xl outline-none transition-all duration-300
-    ${focused === field ? 'border-purple-500 bg-white shadow-lg shadow-purple-500/10' : 'border-gray-200 hover:border-gray-300'}
+    w-full px-4 py-4 pl-12 bg-gray-50 dark:bg-gray-800 border-2 rounded-xl outline-none transition-all duration-300 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400
+    ${focused === field ? 'border-purple-500 bg-white dark:bg-gray-700 shadow-lg shadow-purple-500/10' : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'}
   `;
 
   return (
-    <div className="bg-white rounded-3xl p-8 shadow-lg h-full">
-      <h3 className="text-2xl font-bold text-gray-900 mb-2">Send a Message</h3>
-      <p className="text-gray-600 mb-8">I'd love to hear about your project. Fill out the form below.</p>
+    <div className="bg-white dark:bg-gray-900 rounded-3xl p-8 shadow-lg h-full border border-gray-100 dark:border-gray-700">
+      <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Send a Message</h3>
+      <p className="text-gray-600 dark:text-gray-400 mb-8">I'd love to hear about your project. Fill out the form below.</p>
 
       <form onSubmit={submit} className="space-y-5">
         {/* Name & Email Row */}
@@ -102,8 +102,8 @@ const ContactForm = () => {
             placeholder="Tell me about your project..."
             rows={5}
             className={`
-              w-full px-4 py-4 bg-gray-50 border-2 rounded-xl outline-none transition-all duration-300 resize-none
-              ${focused === 'message' ? 'border-purple-500 bg-white shadow-lg shadow-purple-500/10' : 'border-gray-200 hover:border-gray-300'}
+              w-full px-4 py-4 bg-gray-50 dark:bg-gray-800 border-2 rounded-xl outline-none transition-all duration-300 resize-none text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400
+              ${focused === 'message' ? 'border-purple-500 bg-white dark:bg-gray-700 shadow-lg shadow-purple-500/10' : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'}
             `}
           />
         </div>

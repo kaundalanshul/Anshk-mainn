@@ -38,10 +38,10 @@ const AboutSection = ({ name: propName, role: propRole, bio: propBio }) => {
 
   return (
     <section className="py-10" id="about">
-      <div className="relative overflow-hidden rounded-3xl bg-white border border-gray-100 shadow-sm">
+      <div className="relative overflow-hidden rounded-3xl bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-700 shadow-sm">
         {/* Background Elements */}
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-purple-50 to-transparent -z-10" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-50 rounded-full blur-3xl -z-10" />
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-purple-50 dark:from-purple-900/20 to-transparent -z-10" />
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-50 dark:bg-blue-900/20 rounded-full blur-3xl -z-10" />
 
         <div className="px-4 py-6 md:px-12 md:py-12">
           <div className="grid md:grid-cols-2 gap-6 md:gap-12 items-center">
@@ -55,8 +55,8 @@ const AboutSection = ({ name: propName, role: propRole, bio: propBio }) => {
               >
                 <div className="relative">
                   {/* Rings */}
-                  <div className="absolute inset-0 rounded-full border border-gray-200 scale-110" />
-                  <div className="absolute inset-0 rounded-full border border-gray-100 scale-125" />
+                  <div className="absolute inset-0 rounded-full border border-gray-200 dark:border-gray-600 scale-110" />
+                  <div className="absolute inset-0 rounded-full border border-gray-100 dark:border-gray-600 scale-125" />
                   
                   <img
                     src={assets.profile || assets.about_img}
@@ -64,9 +64,9 @@ const AboutSection = ({ name: propName, role: propRole, bio: propBio }) => {
                     className="w-40 h-40 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full shadow-2xl object-cover border-4 border-white relative z-10"
                   />
                   {/* Floating Badge */}
-                  <div className="absolute bottom-0 right-0 z-20 bg-white p-2 sm:p-4 rounded-xl shadow-xl border border-gray-100 hidden md:block">
-                    <p className="text-xs sm:text-sm text-gray-500">Experience</p>
-                    <p className="text-lg sm:text-2xl font-bold text-gray-800">2+ Years</p>
+                  <div className="absolute bottom-0 right-0 z-20 bg-white dark:bg-gray-800 p-2 sm:p-4 rounded-xl shadow-xl border border-gray-100 dark:border-gray-700 hidden md:block">
+                    <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Experience</p>
+                    <p className="text-lg sm:text-2xl font-bold text-gray-800 dark:text-white">2+ Years</p>
                   </div>
                 </div>
               </motion.div>
@@ -78,12 +78,12 @@ const AboutSection = ({ name: propName, role: propRole, bio: propBio }) => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-center md:text-left"
               >
-                <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-2 sm:mb-4 leading-tight">
+                <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-4 leading-tight">
                   Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">{name}</span>
                 </h2>
-                <h3 className="text-lg sm:text-xl text-gray-600 mb-4 sm:mb-6 font-medium">{role}</h3>
+                <h3 className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 font-medium">{role}</h3>
                 
-                <div className="space-y-2 sm:space-y-4 text-sm sm:text-base text-gray-600 leading-relaxed mb-6 sm:mb-8">
+                <div className="space-y-2 sm:space-y-4 text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed mb-6 sm:mb-8">
                   <p>
                     {bio || "I design thoughtful digital experiences with a focus on usability, accessibility and visual storytelling. I work end-to-end — from research and wireframes to high-fidelity prototypes and handoff."}
                   </p>
@@ -97,7 +97,7 @@ const AboutSection = ({ name: propName, role: propRole, bio: propBio }) => {
                     href="/resume.pdf" 
                     download="Anshul Kaundal's resume.pdf"
                     target="_blank"
-                    className="px-6 py-2 sm:px-8 sm:py-3 text-sm sm:text-base bg-white text-gray-800 border border-gray-200 rounded-full font-medium hover:border-gray-400 hover:bg-gray-50 transition-all flex items-center gap-2"
+                    className="px-6 py-2 sm:px-8 sm:py-3 text-sm sm:text-base bg-white dark:bg-gray-800 text-gray-800 dark:text-white border border-gray-200 dark:border-gray-600 rounded-full font-medium hover:border-gray-400 dark:hover:border-gray-500 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all flex items-center gap-2"
                   >
                     <FaDownload />
                     Resume
@@ -105,18 +105,18 @@ const AboutSection = ({ name: propName, role: propRole, bio: propBio }) => {
                 </div>
 
                 {/* Quick Stats */}
-                <div className="grid grid-cols-3 gap-4 sm:gap-6 mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-100">
+                <div className="grid grid-cols-3 gap-4 sm:gap-6 mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-100 dark:border-gray-700">
                   <div>
-                    <h4 className="text-xl sm:text-3xl font-bold text-gray-900">20+</h4>
-                    <p className="text-xs sm:text-sm text-gray-500">Projects</p>
+                    <h4 className="text-xl sm:text-3xl font-bold text-gray-900 dark:text-white">20+</h4>
+                    <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Projects</p>
                   </div>
                   <div>
-                    <h4 className="text-xl sm:text-3xl font-bold text-gray-900">10+</h4>
-                    <p className="text-xs sm:text-sm text-gray-500">Clients</p>
+                    <h4 className="text-xl sm:text-3xl font-bold text-gray-900 dark:text-white">10+</h4>
+                    <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Clients</p>
                   </div>
                   <div>
-                    <h4 className="text-xl sm:text-3xl font-bold text-gray-900">100%</h4>
-                    <p className="text-xs sm:text-sm text-gray-500">Satisfaction</p>
+                    <h4 className="text-xl sm:text-3xl font-bold text-gray-900 dark:text-white">100%</h4>
+                    <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Satisfaction</p>
                   </div>
                 </div>
               </motion.div>

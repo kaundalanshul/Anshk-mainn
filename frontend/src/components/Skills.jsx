@@ -10,11 +10,11 @@ const skills = [
 
 const Skills = () => {
   return (
-    <section className="relative bg-white text-gray-800 overflow-hidden rounded-3xl border border-gray-100 shadow-lg">
+    <section className="relative bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 overflow-hidden rounded-3xl border border-gray-100 dark:border-gray-700 shadow-lg">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-20 -right-20 w-40 h-40 bg-purple-500/5 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-blue-500/5 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute -top-20 -right-20 w-40 h-40 bg-purple-500/5 dark:bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-blue-500/5 dark:bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 py-4 md:px-12 md:py-8">
@@ -29,7 +29,7 @@ const Skills = () => {
             <h3 className="text-2xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">
               Skills & Tools
             </h3>
-            <p className="text-gray-500 text-[10px] sm:text-sm mt-1 whitespace-nowrap">
+            <p className="text-gray-500 dark:text-gray-400 text-[10px] sm:text-sm mt-1 whitespace-nowrap">
               Tools and disciplines I use to craft human-centered interfaces.
             </p>
           </motion.div>
@@ -44,7 +44,7 @@ const Skills = () => {
             {skills.map((s) => (
               <span
                 key={s}
-                className="px-4 py-2 rounded-full bg-gray-50 border border-gray-100 text-sm text-gray-600 hover:text-purple-600 hover:border-purple-100 hover:bg-purple-50 transition-all duration-300"
+                className="px-4 py-2 rounded-full bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 text-sm text-gray-600 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 hover:border-purple-100 dark:hover:border-purple-700 hover:bg-purple-50 dark:hover:bg-purple-900/30 transition-all duration-300"
               >
                 {s}
               </span>

@@ -41,13 +41,13 @@ const ProductItem = ({
 
   return (
     <div
-      className="group relative bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300"
+      className="group relative bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm overflow-hidden hover:shadow-lg transition-all duration-300"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       <Link to={`/product/${id}`} className="block h-full">
         {/* Image Section */}
-        <div className="relative w-full h-[350px] bg-gray-100 overflow-hidden">
+        <div className="relative w-full h-[350px] bg-gray-100 dark:bg-gray-700 overflow-hidden">
           <img
             src={(Array.isArray(image) && image.length > 0 && image[0]) ? image[0] : "https://placehold.co/600x400?text=No+Image"}
             alt={name}

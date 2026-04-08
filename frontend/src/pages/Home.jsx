@@ -5,7 +5,7 @@ import Skills from "../components/Skills";
 
 const Home = () => {
   return (
-    <div className="flex flex-col gap-0 sm:gap-20">
+    <div className="flex flex-col gap-0 sm:gap-20 bg-white dark:bg-slate-950">
       <Hero />
       <ProjectsGrid />
       <Skills />

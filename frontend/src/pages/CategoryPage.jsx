@@ -33,8 +33,8 @@ const CategoryPage = () => {
     categoryName.charAt(0).toUpperCase() + categoryName.slice(1);
 
   return (
-    <div className="p-4 sm:px-6">
-      <h2 className="text-2xl font-bold mb-4">{formattedCategory} Products</h2>
+    <div className="p-4 sm:px-6 bg-white dark:bg-slate-950 min-h-screen">
+      <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">{formattedCategory} Products</h2>
 
       {/* Search input */}
       <div className="mt-4">
@@ -43,7 +43,7 @@ const CategoryPage = () => {
           placeholder="Search products..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full px-4 py-3 text-sm border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-400 transition-all duration-200"
+          className="w-full px-4 py-3 text-sm border border-gray-300 dark:border-gray-700 rounded-lg shadow-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-400 dark:focus:ring-purple-500 transition-all duration-200"
         />
       </div>
 

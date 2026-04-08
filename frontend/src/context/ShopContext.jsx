@@ -21,6 +21,7 @@ const ShopContextProvider = ({ children }) => {
   const [reviews, setReviews] = useState({});
   const [promoCode, setPromoCode] = useState("");
   const [discount, setDiscount] = useState(0);
+  const [darkMode, setDarkMode] = useState(false);
 
   // 🌟 Wishlist - Load & Save
   useEffect(() => {
@@ -31,6 +32,31 @@ const ShopContextProvider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem("wishlist", JSON.stringify(wishlist));
   }, [wishlist]);
+
+  // 🌙 Dark Mode - Load & Save
+  useEffect(() => {
+    const stored = localStorage.getItem("darkMode");
+    if (stored) {
+      const isDark = JSON.parse(stored);
+      setDarkMode(isDark);
+      if (isDark) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    }
+  }, []);
+
+  const toggleDarkMode = () => {
+    const newDarkMode = !darkMode;
+    setDarkMode(newDarkMode);
+    localStorage.setItem("darkMode", JSON.stringify(newDarkMode));
+    if (newDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  };
 
   const addToWishlist = (id) => {
     if (!wishlist.includes(id)) {
@@ -245,6 +271,8 @@ const ShopContextProvider = ({ children }) => {
     setPromoCode,
     discount,
     setDiscount,
+    darkMode,
+    toggleDarkMode,
   };
 
   return (

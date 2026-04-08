@@ -10,7 +10,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative bg-white text-gray-800 overflow-hidden rounded-3xl border border-gray-100 shadow-lg mt-2 md:mt-10">
+    <footer className="relative bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 overflow-hidden rounded-3xl border border-gray-100 dark:border-gray-700 shadow-lg mt-2 md:mt-10">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-20 -right-20 w-40 h-40 bg-purple-500/5 rounded-full blur-3xl animate-pulse" />
@@ -30,7 +30,7 @@ const Footer = () => {
             <h2 className="text-lg sm:text-2xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">
               Anshul Kaundal
             </h2>
-            <p className="text-gray-500 text-[10px] sm:text-sm">FULL STACK DEVELOPER</p>
+            <p className="text-gray-500 dark:text-gray-400 text-[10px] sm:text-sm">FULL STACK DEVELOPER</p>
           </motion.div>
 
           {/* Navigation Links */}
@@ -44,7 +44,7 @@ const Footer = () => {
               <a
                 key={link}
                 href={link === 'Home' ? '/' : `/${link.toLowerCase()}`}
-                className="text-gray-600 hover:text-purple-600 transition-colors duration-300"
+                className="text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-300"
               >
                 {link}
               </a>
@@ -63,7 +63,7 @@ const Footer = () => {
                 key={label}
                 href={href}
                 aria-label={label}
-                className={`w-8 h-8 sm:w-11 sm:h-11 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-600 hover:text-white hover:border-transparent ${color} transition-all duration-300`}
+                className={`w-8 h-8 sm:w-11 sm:h-11 rounded-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-white hover:border-transparent ${color} transition-all duration-300`}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -74,7 +74,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-2 sm:mt-6 pt-2 sm:pt-4 border-t border-gray-200 flex flex-row justify-between items-center gap-2 text-[10px] sm:text-xs text-gray-500">
+        <div className="mt-2 sm:mt-6 pt-2 sm:pt-4 border-t border-gray-200 dark:border-gray-700 flex flex-row justify-between items-center gap-2 text-[10px] sm:text-xs text-gray-500 dark:text-gray-400">
           <p>© 2026 Anshul Kaundal. All rights reserved.</p>
           <p className="flex items-center gap-1">
             Made with <FaHeart className="text-red-500 animate-pulse text-[10px]" /> in India
