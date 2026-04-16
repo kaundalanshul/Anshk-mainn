@@ -3,21 +3,21 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaPaperPlane, FaCheck, FaUser, FaEnvelope, FaPen } from 'react-icons/fa';
 
 const ContactForm = () => {
-  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
-  const [sent, setSent] = useState(false);
+  const [form, setForm]       = useState({ name: '', email: '', subject: '', message: '' });
+  const [sent, setSent]       = useState(false);
   const [focused, setFocused] = useState('');
+  const [sending, setSending] = useState(false);
 
   const submit = (e) => {
     e.preventDefault();
-    // Send form data to backend to forward as email
+    setSending(true);
     (async () => {
       try {
-        const res = await fetch('/api/contact', {
-          method: 'POST',
+        const res  = await fetch('/api/contact', {
+          method:  'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(form),
+          body:    JSON.stringify(form),
         });
-
         const data = await res.json();
         if (res.ok && data.success) {
           setSent(true);
@@ -26,32 +26,38 @@ const ContactForm = () => {
             setForm({ name: '', email: '', subject: '', message: '' });
           }, 3000);
         } else {
-          // handle failure
-          console.error('Send failed', data);
-          alert(data.message || 'Failed to send message. Please try again later.');
+          alert(data.message || 'Failed to send message. Please try again.');
         }
-      } catch (err) {
-        console.error('Contact submit error', err);
-        alert('Failed to send message. Please check your connection and try again.');
+      } catch {
+        alert('Failed to send message. Check your connection and try again.');
+      } finally {
+        setSending(false);
       }
     })();
   };
 
-  const inputClasses = (field) => `
-    w-full px-4 py-4 pl-12 bg-gray-50 dark:bg-gray-800 border-2 rounded-xl outline-none transition-all duration-300 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400
-    ${focused === field ? 'border-purple-500 bg-white dark:bg-gray-700 shadow-lg shadow-purple-500/10' : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'}
-  `;
+  /* Shared input class helper */
+  const inputCls = (field) =>
+    `w-full px-4 py-3.5 pl-11 rounded-xl outline-none text-sm transition-all duration-300 text-slate-100 placeholder-slate-500
+     ${focused === field
+       ? 'border-violet-500/70 shadow-[0_0_0_3px_rgba(139,92,246,0.18),0_0_20px_rgba(139,92,246,0.1)]'
+       : 'border-[rgba(139,92,246,0.18)] hover:border-[rgba(139,92,246,0.32)]'
+     }
+     bg-[rgba(12,18,36,0.6)] backdrop-blur-md border`;
 
   return (
-    <div className="bg-white dark:bg-gray-900 rounded-3xl p-8 shadow-lg h-full border border-gray-100 dark:border-gray-700">
-      <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Send a Message</h3>
-      <p className="text-gray-600 dark:text-gray-400 mb-8">I'd love to hear about your project. Fill out the form below.</p>
+    <div
+      className="rounded-3xl p-6 sm:p-8 h-full border border-[rgba(139,92,246,0.15)] shadow-glass"
+      style={{ background: 'rgba(10,14,28,0.72)', backdropFilter: 'blur(20px)' }}
+    >
+      <h3 className="text-xl sm:text-2xl font-extrabold text-slate-100 mb-1">Send a Message</h3>
+      <p className="text-slate-500 text-sm mb-7">I'd love to hear about your project. Fill out the form below.</p>
 
-      <form onSubmit={submit} className="space-y-5">
-        {/* Name & Email Row */}
-        <div className="grid md:grid-cols-2 gap-5">
+      <form onSubmit={submit} className="space-y-4">
+        {/* Name & Email */}
+        <div className="grid md:grid-cols-2 gap-4">
           <div className="relative">
-            <FaUser className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors ${focused === 'name' ? 'text-purple-500' : 'text-gray-400'}`} />
+            <FaUser className={`absolute left-4 top-1/2 -translate-y-1/2 text-xs transition-colors ${focused === 'name' ? 'text-violet-400' : 'text-slate-500'}`} />
             <input
               required
               value={form.name}
@@ -59,11 +65,11 @@ const ContactForm = () => {
               onFocus={() => setFocused('name')}
               onBlur={() => setFocused('')}
               placeholder="Your name"
-              className={inputClasses('name')}
+              className={inputCls('name')}
             />
           </div>
           <div className="relative">
-            <FaEnvelope className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors ${focused === 'email' ? 'text-purple-500' : 'text-gray-400'}`} />
+            <FaEnvelope className={`absolute left-4 top-1/2 -translate-y-1/2 text-xs transition-colors ${focused === 'email' ? 'text-violet-400' : 'text-slate-500'}`} />
             <input
               required
               type="email"
@@ -72,14 +78,14 @@ const ContactForm = () => {
               onFocus={() => setFocused('email')}
               onBlur={() => setFocused('')}
               placeholder="Your email"
-              className={inputClasses('email')}
+              className={inputCls('email')}
             />
           </div>
         </div>
 
         {/* Subject */}
         <div className="relative">
-          <FaPen className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors ${focused === 'subject' ? 'text-purple-500' : 'text-gray-400'}`} />
+          <FaPen className={`absolute left-4 top-1/2 -translate-y-1/2 text-xs transition-colors ${focused === 'subject' ? 'text-violet-400' : 'text-slate-500'}`} />
           <input
             required
             value={form.subject}
@@ -87,38 +93,41 @@ const ContactForm = () => {
             onFocus={() => setFocused('subject')}
             onBlur={() => setFocused('')}
             placeholder="Subject"
-            className={inputClasses('subject')}
+            className={inputCls('subject')}
           />
         </div>
 
         {/* Message */}
-        <div className="relative">
-          <textarea
-            required
-            value={form.message}
-            onChange={(e) => setForm({ ...form, message: e.target.value })}
-            onFocus={() => setFocused('message')}
-            onBlur={() => setFocused('')}
-            placeholder="Tell me about your project..."
-            rows={5}
-            className={`
-              w-full px-4 py-4 bg-gray-50 dark:bg-gray-800 border-2 rounded-xl outline-none transition-all duration-300 resize-none text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400
-              ${focused === 'message' ? 'border-purple-500 bg-white dark:bg-gray-700 shadow-lg shadow-purple-500/10' : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'}
-            `}
-          />
-        </div>
+        <textarea
+          required
+          value={form.message}
+          onChange={(e) => setForm({ ...form, message: e.target.value })}
+          onFocus={() => setFocused('message')}
+          onBlur={() => setFocused('')}
+          placeholder="Tell me about your project..."
+          rows={5}
+          className={`
+            w-full px-4 py-3.5 rounded-xl outline-none text-sm transition-all duration-300 resize-none
+            text-slate-100 placeholder-slate-500 bg-[rgba(12,18,36,0.6)] backdrop-blur-md border
+            ${focused === 'message'
+              ? 'border-violet-500/70 shadow-[0_0_0_3px_rgba(139,92,246,0.18),0_0_20px_rgba(139,92,246,0.1)]'
+              : 'border-[rgba(139,92,246,0.18)] hover:border-[rgba(139,92,246,0.32)]'
+            }
+          `}
+        />
 
         {/* Submit Button */}
         <motion.button
           type="submit"
-          disabled={sent}
+          disabled={sent || sending}
           whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
+          whileTap={{ scale: 0.97 }}
           className={`
-            w-full py-4 rounded-xl font-semibold text-white flex items-center justify-center gap-2 transition-all duration-300
-            ${sent 
-              ? 'bg-green-500' 
-              : 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 shadow-lg shadow-purple-500/30'
+            w-full py-4 rounded-xl font-semibold text-white flex items-center justify-center gap-2
+            transition-all duration-300 text-sm relative overflow-hidden
+            ${sent
+              ? 'bg-emerald-600 shadow-[0_0_24px_rgba(16,185,129,0.35)]'
+              : 'bg-gradient-to-r from-violet-600 to-pink-600 shadow-[0_4px_20px_rgba(124,58,237,0.4)] hover:shadow-[0_8px_30px_rgba(124,58,237,0.55)]'
             }
           `}
         >
@@ -133,6 +142,16 @@ const ContactForm = () => {
               >
                 <FaCheck /> Message Sent!
               </motion.span>
+            ) : sending ? (
+              <motion.span
+                key="sending"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="flex items-center gap-2"
+              >
+                <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                Sending...
+              </motion.span>
             ) : (
               <motion.span
                 key="send"
@@ -141,21 +160,21 @@ const ContactForm = () => {
                 exit={{ opacity: 0, y: -10 }}
                 className="flex items-center gap-2"
               >
-                Send Message <FaPaperPlane />
+                Send Message <FaPaperPlane className="text-xs" />
               </motion.span>
             )}
           </AnimatePresence>
         </motion.button>
       </form>
 
-      {/* Trust Indicators */}
-      <div className="mt-8 pt-6 border-t border-gray-100">
-        <div className="flex items-center justify-center gap-6 text-sm text-gray-500">
+      {/* Trust indicators */}
+      <div className="mt-6 pt-5 border-t border-[rgba(139,92,246,0.12)]">
+        <div className="flex items-center justify-center gap-6 text-xs text-slate-500">
           <span className="flex items-center gap-2">
-            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-            Usually responds in 48hrs
+            <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
+            Usually responds in 48 hrs
           </span>
-          <span>•</span>
+          <span className="text-slate-700">•</span>
           <span>100% Response Rate</span>
         </div>
       </div>

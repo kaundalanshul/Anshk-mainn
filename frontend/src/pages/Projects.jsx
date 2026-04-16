@@ -1,9 +1,9 @@
-import React from 'react';
-import ProjectsGrid from '../components/ProjectsGrid';
+import React from "react";
+import ProjectsGrid from "../components/ProjectsGrid";
 
 const Projects = () => {
   return (
-    <div>
+    <div className="min-h-screen">
       <ProjectsGrid />
     </div>
   );

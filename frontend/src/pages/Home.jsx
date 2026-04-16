@@ -5,9 +5,11 @@ import Skills from "../components/Skills";
 
 const Home = () => {
   return (
-    <div className="flex flex-col gap-0 sm:gap-20 bg-white dark:bg-slate-950">
+    <div className="flex flex-col gap-6 sm:gap-16">
       <Hero />
       <ProjectsGrid />
+      {/* Section divider */}
+      <div className="section-divider" />
       <Skills />
     </div>
   );

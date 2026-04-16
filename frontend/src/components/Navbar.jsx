@@ -2,22 +2,26 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { assets } from "../assets/assets";
 import { ShopContext } from "../context/ShopContext";
-import { FaUserCircle, FaBoxOpen, FaSignOutAlt, FaMoon, FaSun } from "react-icons/fa";
+import { FaUserCircle, FaBoxOpen, FaSignOutAlt, FaMoon, FaSun, FaTimes, FaBars } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
+
+const NAV_LINKS = [
+  { to: "/",        label: "HOME" },
+  { to: "/projects", label: "PROJECTS" },
+  { to: "/about",   label: "ABOUT" },
+  { to: "/contact", label: "CONTACT" },
+];
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled,   setScrolled]   = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
   const {
-    setShowSearch,
-    getCartCount,
-    navigate,
-    token,
-    setToken,
-    setCartItems,
-    darkMode,
-    toggleDarkMode,
+    setShowSearch, getCartCount, navigate,
+    token, setToken, setCartItems,
+    darkMode, toggleDarkMode,
   } = useContext(ShopContext);
 
   const logout = () => {
@@ -28,11 +32,18 @@ const Navbar = () => {
     setDropdownOpen(false);
   };
 
+  /* Shrink navbar on scroll */
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 30);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  /* Close dropdown on outside click */
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target))
         setDropdownOpen(false);
-      }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
@@ -40,145 +51,182 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Navbar */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-900/90 backdrop-blur-md shadow-lg px-4 sm:px-6 py-5 flex items-center justify-between transition-all duration-300 border-b border-gray-100 dark:border-gray-800">
-
-        {/* Desktop Links */}
-        <nav className="flex items-center gap-4 sm:gap-10 text-gray-700 dark:text-gray-300 text-xs sm:text-base font-medium">
-          {[
-            { to: '/', label: 'HOME' },
-            { to: '/projects', label: 'PROJECTS' },
-            { to: '/about', label: 'ABOUT' },
-            { to: '/contact', label: 'CONTACT' },
-          ].map(({ to, label }) => (
-            <NavLink
-              key={to}
-              to={to}
-              className={({ isActive }) =>
-                `hover:text-black dark:hover:text-white transition duration-300 ${
-                  isActive ? 'text-black dark:text-white font-semibold underline underline-offset-4' : ''
-                }`
-              }
-            >
-              {label}
-            </NavLink>
-          ))}
-        </nav>
-
-        {/* Right Side - Dark Mode Toggle */}
-        <div className="flex items-center gap-4">
-          <button
-            onClick={toggleDarkMode}
-            className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
-            aria-label="Toggle dark mode"
-          >
-            {darkMode ? (
-              <FaSun className="w-5 h-5 text-yellow-500" />
-            ) : (
-              <FaMoon className="w-5 h-5 text-gray-700 dark:text-gray-300" />
-            )}
-          </button>
-
-          {/* Mobile Menu Button - Hidden */}
-          <button
-            onClick={() => setMobileOpen(true)}
-            className="hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition"
-          >
-            <img src={assets.menu_icon} alt="menu" className="w-6 h-6" />
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu Overlay */}
-      {mobileOpen && (
-        <div
-          className="fixed inset-0 z-40 bg-black bg-opacity-50 animate-fadeIn"
-          onClick={() => setMobileOpen(false)}
-        ></div>
-      )}
-
-      {/* Mobile Fullscreen Menu */}
-      <aside
-        className={`fixed top-0 right-0 h-full w-full max-w-sm bg-white dark:bg-gray-900 z-50 shadow-2xl transform transition-transform duration-500 ease-in-out ${
-          mobileOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+      {/* ─── Navbar ─── */}
+      <motion.header
+        initial={{ y: -80, opacity: 0 }}
+        animate={{ y: 0,   opacity: 1 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        className={`
+          fixed top-0 left-0 right-0 z-50 transition-all duration-500
+          ${scrolled
+            ? "py-3 bg-[rgba(7,11,20,0.85)] backdrop-blur-2xl border-b border-[rgba(139,92,246,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
+            : "py-5 bg-[rgba(7,11,20,0.45)] backdrop-blur-xl border-b border-[rgba(139,92,246,0.08)]"
+          }
+        `}
       >
-        <div className="flex flex-col h-full">
-          {/* Header */}
-          <div className="flex justify-between items-center px-6 py-4 border-b border-gray-200 dark:border-gray-700">
-            <h2 className="text-lg font-semibold tracking-wide text-gray-900 dark:text-white">Menu</h2>
-            <button
-              onClick={() => setMobileOpen(false)}
-              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full"
-            >
-              <img
-                src={assets.dropdown_icon}
-                alt="close"
-                className="rotate-180 w-4 h-4"
-              />
-            </button>
-          </div>
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 flex items-center justify-between">
 
-          {/* Links */}
-          <div className="flex flex-col text-gray-800 dark:text-gray-200 text-base font-medium">
-            {[
-              { to: "/", label: "Home" },
-              { to: "/projects", label: "Projects" },
-              { to: "/about", label: "About" },
-              { to: "/contact", label: "Contact" },
-            ].map(({ to, label }) => (
+          {/* ─── Brand Logo ─── */}
+          <Link to="/" className="flex items-center gap-2 group">
+            <span className="text-xl sm:text-2xl font-bold gradient-text tracking-tight">
+              AK
+            </span>
+            <span className="hidden sm:block text-sm text-slate-400 font-medium tracking-widest uppercase">
+              Portfolio
+            </span>
+          </Link>
+
+          {/* ─── Desktop Nav Links ─── */}
+          <nav className="hidden md:flex items-center gap-8 text-xs font-semibold tracking-widest">
+            {NAV_LINKS.map(({ to, label }) => (
               <NavLink
                 key={to}
                 to={to}
-                onClick={() => setMobileOpen(false)}
-                className="py-4 px-6 border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition"
+                end={to === "/"}
+                className={({ isActive }) =>
+                  `relative transition-colors duration-300 ${
+                    isActive
+                      ? "text-violet-300 nav-active"
+                      : "text-slate-400 hover:text-violet-200"
+                  }`
+                }
               >
                 {label}
               </NavLink>
             ))}
+          </nav>
 
-            {token && (
-              <>
-                <div className="px-6 text-center pt-5 pb-2 text-s text-gray-900 dark:text-white uppercase tracking-widest font-semibold">
-                  Your Account
-                </div>
+          {/* ─── Right Controls ─── */}
+          <div className="flex items-center gap-3">
+            {/* Dark Mode Toggle */}
+            <motion.button
+              onClick={toggleDarkMode}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.92 }}
+              className="p-2.5 rounded-full glass-sm text-slate-400 hover:text-violet-300 transition-colors duration-200"
+              aria-label="Toggle dark mode"
+            >
+              {darkMode
+                ? <FaSun  className="w-4 h-4 text-amber-400" />
+                : <FaMoon className="w-4 h-4" />
+              }
+            </motion.button>
 
-                <NavLink
-                  to="/"
-                  onClick={() => setMobileOpen(false)}
-                  className="flex items-center gap-3 py-4 px-6 border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition"
-                >
-                  <FaUserCircle className="text-gray-600 dark:text-gray-400 w-5 h-5" />
-                  <span>My Profile</span>
-                </NavLink>
-
-                <NavLink
-                  to="/orders"
-                  onClick={() => setMobileOpen(false)}
-                  className="flex items-center gap-3 py-4 px-6 border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition"
-                >
-                  <FaBoxOpen className="text-gray-600 dark:text-gray-400 w-5 h-5" />
-                  <span>Orders</span>
-                </NavLink>
-
-                <button
-                  onClick={() => {
-                    logout();
-                    setMobileOpen(false);
-                  }}
-                  className="flex items-center gap-3 py-4 px-6 text-left border-b border-gray-100 dark:border-gray-700 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition"
-                >
-                  <FaSignOutAlt className="w-5 h-5" />
-                  <span>Logout</span>
-                </button>
-              </>
-            )}
+            {/* ─── Mobile Hamburger ─── */}
+            <motion.button
+              onClick={() => setMobileOpen(true)}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.92 }}
+              className="md:hidden p-2.5 rounded-full glass-sm text-slate-400 hover:text-violet-300 transition-colors"
+            >
+              <FaBars className="w-4 h-4" />
+            </motion.button>
           </div>
         </div>
-      </aside>
+      </motion.header>
+
+      {/* ─── Mobile Overlay ─── */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <>
+            <motion.div
+              key="overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm"
+              onClick={() => setMobileOpen(false)}
+            />
+            <motion.aside
+              key="sidebar"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 28, stiffness: 300 }}
+              className="fixed top-0 right-0 h-full w-80 max-w-[90vw] z-50"
+              style={{
+                background: "rgba(10,14,28,0.96)",
+                backdropFilter: "blur(32px)",
+                borderLeft: "1px solid rgba(139,92,246,0.18)",
+              }}
+            >
+              {/* Header */}
+              <div className="flex justify-between items-center px-6 py-5 border-b border-[rgba(139,92,246,0.15)]">
+                <span className="text-lg font-bold gradient-text">Menu</span>
+                <button
+                  onClick={() => setMobileOpen(false)}
+                  className="p-2 rounded-full hover:bg-[rgba(139,92,246,0.15)] text-slate-400 hover:text-violet-300 transition"
+                >
+                  <FaTimes className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Links */}
+              <div className="flex flex-col mt-4">
+                {[
+                  { to: "/",         label: "Home" },
+                  { to: "/projects", label: "Projects" },
+                  { to: "/about",    label: "About" },
+                  { to: "/contact",  label: "Contact" },
+                ].map(({ to, label }, i) => (
+                  <motion.div
+                    key={to}
+                    initial={{ x: 40, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.05 * i }}
+                  >
+                    <NavLink
+                      to={to}
+                      end={to === "/"}
+                      onClick={() => setMobileOpen(false)}
+                      className={({ isActive }) =>
+                        `block py-4 px-6 text-sm font-semibold tracking-widest uppercase border-b border-[rgba(139,92,246,0.08)] transition-colors duration-200 ${
+                          isActive
+                            ? "text-violet-300 bg-[rgba(139,92,246,0.1)]"
+                            : "text-slate-400 hover:text-violet-200 hover:bg-[rgba(139,92,246,0.06)]"
+                        }`
+                      }
+                    >
+                      {label}
+                    </NavLink>
+                  </motion.div>
+                ))}
+
+                {token && (
+                  <>
+                    <div className="px-6 py-4 text-[10px] text-slate-500 uppercase tracking-[0.2em] font-semibold">
+                      Account
+                    </div>
+                    <NavLink
+                      to="/"
+                      onClick={() => setMobileOpen(false)}
+                      className="flex items-center gap-3 py-4 px-6 border-b border-[rgba(139,92,246,0.08)] text-slate-400 hover:text-violet-300 transition"
+                    >
+                      <FaUserCircle /> My Profile
+                    </NavLink>
+                    <NavLink
+                      to="/orders"
+                      onClick={() => setMobileOpen(false)}
+                      className="flex items-center gap-3 py-4 px-6 border-b border-[rgba(139,92,246,0.08)] text-slate-400 hover:text-violet-300 transition"
+                    >
+                      <FaBoxOpen /> Orders
+                    </NavLink>
+                    <button
+                      onClick={() => { logout(); setMobileOpen(false); }}
+                      className="flex items-center gap-3 py-4 px-6 text-left text-red-400 hover:bg-red-500/10 transition"
+                    >
+                      <FaSignOutAlt /> Logout
+                    </button>
+                  </>
+                )}
+              </div>
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* Spacer */}
-      <div className="h-20 sm:h-24"></div>
+      <div className="h-20 sm:h-24" />
     </>
   );
 };

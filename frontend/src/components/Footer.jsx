@@ -1,83 +1,136 @@
 import React from "react";
-import { FaInstagram, FaGithub, FaFacebookF, FaHeart, FaLinkedinIn, FaEnvelope } from "react-icons/fa";
+import { FaGithub, FaHeart, FaLinkedinIn, FaEnvelope, FaArrowUp } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+
+const socialLinks = [
+  {
+    icon: FaLinkedinIn,
+    href: "https://www.linkedin.com/in/anshul-kaundal-18877a328/",
+    label: "LinkedIn",
+    hoverClass: "hover:bg-blue-600 hover:border-blue-600",
+  },
+  {
+    icon: FaGithub,
+    href: "https://github.com/Kaundalanshul",
+    label: "GitHub",
+    hoverClass: "hover:bg-slate-600 hover:border-slate-600",
+  },
+  {
+    icon: FaEnvelope,
+    href: "mailto:kaundalanshul725@gmail.com",
+    label: "Email",
+    hoverClass: "hover:bg-gradient-to-br hover:from-violet-500 hover:to-pink-500 hover:border-transparent",
+  },
+];
+
+const navLinks = [
+  { label: "Home",     to: "/" },
+  { label: "Projects", to: "/projects" },
+  { label: "About",    to: "/about" },
+  { label: "Contact",  to: "/contact" },
+];
 
 const Footer = () => {
-  const socialLinks = [
-    { icon: FaLinkedinIn, href: "https://www.linkedin.com/in/anshul-kaundal-18877a328/", color: "hover:bg-blue-600", label: "LinkedIn" },
-    { icon: FaGithub, href: "https://github.com/Kaundalanshul", color: "hover:bg-gray-900", label: "GitHub" },
-    { icon: FaEnvelope, href: "mailto:kaundalanshul725@gmail.com", color: "hover:bg-gradient-to-br hover:from-purple-500 hover:via-pink-500 hover:to-orange-400", label: "Email" },
-  ];
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
-    <footer className="relative bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 overflow-hidden rounded-3xl border border-gray-100 dark:border-gray-700 shadow-lg mt-2 md:mt-10">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-20 -right-20 w-40 h-40 bg-purple-500/5 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-blue-500/5 rounded-full blur-3xl animate-pulse delay-1000" />
-      </div>
+    <footer className="relative overflow-hidden rounded-3xl border border-[rgba(139,92,246,0.15)] shadow-glass mt-4 md:mt-12"
+      style={{ background: "rgba(10,14,28,0.75)", backdropFilter: "blur(24px)" }}
+    >
+      {/* Glow accents */}
+      <div className="absolute -top-16 -right-16 w-48 h-48 rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(139,92,246,0.14) 0%, transparent 70%)" }} />
+      <div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%)" }} />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-4 py-4 md:px-12 md:py-8">
-        {/* Compact Footer Content */}
-        <div className="flex flex-row flex-wrap md:flex-nowrap justify-between items-center gap-4 md:gap-6">
+      <div className="relative z-10 max-w-6xl mx-auto px-5 py-6 md:px-12 md:py-8">
+        {/* ── Top Row ── */}
+        <div className="flex flex-row flex-wrap md:flex-nowrap justify-between items-center gap-5 md:gap-8">
+
           {/* Brand */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
             className="text-left"
           >
-            <h2 className="text-lg sm:text-2xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">
+            <h2 className="text-xl sm:text-2xl font-extrabold gradient-text tracking-tight">
               Anshul Kaundal
             </h2>
-            <p className="text-gray-500 dark:text-gray-400 text-[10px] sm:text-sm">FULL STACK DEVELOPER</p>
+            <p className="text-slate-500 text-[10px] sm:text-xs tracking-widest uppercase mt-0.5">
+              Full Stack Developer
+            </p>
           </motion.div>
 
-          {/* Navigation Links */}
-          <motion.nav 
+          {/* Nav Links */}
+          <motion.nav
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className="flex gap-3 sm:gap-6 text-[10px] sm:text-sm"
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="flex gap-4 sm:gap-7 text-[10px] sm:text-xs tracking-widest uppercase font-semibold"
           >
-            {['Home', 'Projects', 'About', 'Contact'].map((link) => (
-              <a
-                key={link}
-                href={link === 'Home' ? '/' : `/${link.toLowerCase()}`}
-                className="text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-300"
+            {navLinks.map(({ label, to }) => (
+              <Link
+                key={label}
+                to={to}
+                className="text-slate-500 hover:text-violet-300 transition-colors duration-300"
               >
-                {link}
-              </a>
+                {label}
+              </Link>
             ))}
           </motion.nav>
 
-          {/* Social Links */}
-          <motion.div 
+          {/* Social + Scroll-to-top */}
+          <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-            className="flex gap-2 sm:gap-4"
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="flex items-center gap-2 sm:gap-3"
           >
-            {socialLinks.map(({ icon: Icon, href, color, label }) => (
+            {socialLinks.map(({ icon: Icon, href, label, hoverClass }) => (
               <motion.a
                 key={label}
                 href={href}
                 aria-label={label}
-                className={`w-8 h-8 sm:w-11 sm:h-11 rounded-full bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-600 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-white hover:border-transparent ${color} transition-all duration-300`}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
+                target="_blank"
+                rel="noreferrer"
+                whileHover={{ scale: 1.12, y: -2 }}
+                whileTap={{ scale: 0.94 }}
+                className={`
+                  w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-slate-400
+                  border border-[rgba(139,92,246,0.2)] bg-[rgba(139,92,246,0.06)]
+                  hover:text-white transition-all duration-300 text-xs sm:text-sm ${hoverClass}
+                `}
               >
-                <Icon className="text-xs sm:text-base" />
+                <Icon />
               </motion.a>
             ))}
+
+            {/* Scroll to top */}
+            <motion.button
+              onClick={scrollToTop}
+              whileHover={{ scale: 1.12, y: -2 }}
+              whileTap={{ scale: 0.94 }}
+              aria-label="Back to top"
+              className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-slate-400 border border-[rgba(139,92,246,0.2)] bg-[rgba(139,92,246,0.06)] hover:text-white hover:bg-violet-600 hover:border-violet-600 transition-all duration-300 text-xs sm:text-sm"
+            >
+              <FaArrowUp />
+            </motion.button>
           </motion.div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-2 sm:mt-6 pt-2 sm:pt-4 border-t border-gray-200 dark:border-gray-700 flex flex-row justify-between items-center gap-2 text-[10px] sm:text-xs text-gray-500 dark:text-gray-400">
+        {/* Divider */}
+        <div className="section-divider my-4 sm:my-5" />
+
+        {/* ── Bottom Row ── */}
+        <div className="flex flex-row justify-between items-center gap-2 text-[10px] sm:text-xs text-slate-600">
           <p>© 2026 Anshul Kaundal. All rights reserved.</p>
           <p className="flex items-center gap-1">
-            Made with <FaHeart className="text-red-500 animate-pulse text-[10px]" /> in India
+            Made with <FaHeart className="text-pink-500 animate-pulse mx-0.5" /> in India
           </p>
         </div>
       </div>
