@@ -31,7 +31,7 @@ const processSteps  = [
 /* Shared input class */
 const inputCls =
   "w-full px-4 py-3 bg-[rgba(12,18,36,0.6)] border border-[rgba(139,92,246,0.18)] rounded-xl " +
-  "focus:border-violet-500/70 focus:ring-2 focus:ring-violet-500/15 focus:shadow-[0_0_20px_rgba(139,92,246,0.12)] " +
+  "focus:border-emerald-500/70 focus:ring-2 focus:ring-emerald-500/15 focus:shadow-[0_0_20px_rgba(16,185,129,0.12)] " +
   "outline-none transition-all duration-300 text-slate-100 placeholder-slate-500 text-sm backdrop-blur-sm";
 
 const Contact = () => {
@@ -61,8 +61,8 @@ const Contact = () => {
         transition={{ duration: 0.6 }}
         className="text-center pt-4 pb-8 md:pt-2 md:pb-10"
       >
-        <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] uppercase tracking-[0.22em] font-semibold text-violet-300 border border-violet-500/25 bg-violet-500/8 mb-4">
-          <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
+        <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] uppercase tracking-[0.22em] font-semibold text-emerald-300 border border-emerald-500/25 bg-emerald-500/8 mb-4">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
           Contact
         </span>
         <h1 className="text-3xl sm:text-5xl font-extrabold gradient-text glow-text leading-tight">
@@ -117,8 +117,8 @@ const Contact = () => {
                         transition={{ delay: i * 0.1 }}
                         className="flex items-center gap-4 group"
                       >
-                        <div className="w-11 h-11 rounded-xl flex items-center justify-center border border-[rgba(139,92,246,0.2)] bg-[rgba(139,92,246,0.08)] group-hover:bg-violet-600 group-hover:border-violet-500 transition-all duration-300">
-                          <item.icon className="text-violet-300 group-hover:text-white transition-colors text-base" />
+                        <div className="w-11 h-11 rounded-xl flex items-center justify-center border border-[rgba(16,185,129,0.2)] bg-[rgba(16,185,129,0.08)] group-hover:bg-emerald-600 group-hover:border-emerald-500 transition-all duration-300">
+                          <item.icon className="text-emerald-300 group-hover:text-white transition-colors text-base" />
                         </div>
                         <div>
                           <p className="text-slate-500 text-xs">{item.label}</p>
@@ -156,7 +156,7 @@ const Contact = () => {
                     <div className="space-y-3">
                       {processSteps.map((item) => (
                         <div key={item.step} className="flex items-start gap-3">
-                          <span className="shrink-0 px-2 py-0.5 rounded-md bg-[rgba(139,92,246,0.15)] text-[10px] font-bold text-violet-300">
+                          <span className="shrink-0 px-2 py-0.5 rounded-md bg-[rgba(16,185,129,0.15)] text-[10px] font-bold text-emerald-300">
                             {item.step}
                           </span>
                           <div>
@@ -264,7 +264,7 @@ const Contact = () => {
                         disabled={isSubmitting}
                         whileHover={{ scale: 1.01 }}
                         whileTap={{ scale: 0.98 }}
-                        className="w-full py-4 rounded-xl font-semibold text-white flex items-center justify-center gap-2 text-sm transition-all duration-300 disabled:opacity-70 bg-gradient-to-r from-violet-600 to-pink-600 shadow-[0_4px_20px_rgba(124,58,237,0.4)] hover:shadow-[0_8px_30px_rgba(124,58,237,0.55)]"
+                        className="w-full py-4 rounded-xl font-semibold text-white flex items-center justify-center gap-2 text-sm transition-all duration-300 disabled:opacity-70 bg-gradient-to-r from-emerald-600 to-teal-600 shadow-[0_4px_20px_rgba(16,185,129,0.4)] hover:shadow-[0_8px_30px_rgba(16,185,129,0.55)]"
                       >
                         {isSubmitting ? (
                           <>

@@ -19,7 +19,7 @@ const App = () => {
   const hideFooter = location.pathname === "/contact";
 
   return (
-    <div className="dark">
+    <div>
       {/* ─── Animated Background Layer ─── */}
       <div className="bg-animated" aria-hidden="true" />
       <div className="blob-mid" aria-hidden="true" />

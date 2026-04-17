@@ -41,8 +41,10 @@ const ShopContextProvider = ({ children }) => {
       setDarkMode(isDark);
       if (isDark) {
         document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('light');
       } else {
         document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
       }
     }
   }, []);
@@ -53,8 +55,10 @@ const ShopContextProvider = ({ children }) => {
     localStorage.setItem("darkMode", JSON.stringify(newDarkMode));
     if (newDarkMode) {
       document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
     } else {
       document.documentElement.classList.remove('dark');
+      document.documentElement.classList.add('light');
     }
   };
 

@@ -59,35 +59,35 @@ const Navbar = () => {
         className={`
           fixed top-0 left-0 right-0 z-50 transition-all duration-500
           ${scrolled
-            ? "py-3 bg-[rgba(7,11,20,0.85)] backdrop-blur-2xl border-b border-[rgba(139,92,246,0.15)] shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
-            : "py-5 bg-[rgba(7,11,20,0.45)] backdrop-blur-xl border-b border-[rgba(139,92,246,0.08)]"
+            ? "py-3.5 bg-white/75 dark:bg-[rgba(7,11,20,0.9)] backdrop-blur-2xl border-b border-gray-200/50 dark:border-[rgba(16,185,129,0.2)] shadow-[0_8px_32px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]"
+            : "py-5 bg-white/40 dark:bg-[rgba(7,11,20,0.5)] backdrop-blur-xl border-b border-gray-200/30 dark:border-[rgba(16,185,129,0.12)]"
           }
         `}
       >
         <div className="max-w-[1400px] mx-auto px-4 sm:px-8 flex items-center justify-between">
 
           {/* ─── Brand Logo ─── */}
-          <Link to="/" className="flex items-center gap-2 group">
-            <span className="text-xl sm:text-2xl font-bold gradient-text tracking-tight">
+          <Link to="/" className="flex items-center gap-2.5 group">
+            <span className="text-2xl sm:text-3xl font-black gradient-text tracking-tight">
               AK
             </span>
-            <span className="hidden sm:block text-sm text-slate-400 font-medium tracking-widest uppercase">
+            <span className="hidden sm:block text-xs text-gray-600 dark:text-slate-400 font-bold tracking-widest uppercase">
               Portfolio
             </span>
           </Link>
 
           {/* ─── Desktop Nav Links ─── */}
-          <nav className="hidden md:flex items-center gap-8 text-xs font-semibold tracking-widest">
+          <nav className="hidden md:flex items-center gap-10 text-xs font-bold tracking-wider">
             {NAV_LINKS.map(({ to, label }) => (
               <NavLink
                 key={to}
                 to={to}
                 end={to === "/"}
                 className={({ isActive }) =>
-                  `relative transition-colors duration-300 ${
+                  `relative transition-all duration-300 ${
                     isActive
-                      ? "text-violet-300 nav-active"
-                      : "text-slate-400 hover:text-violet-200"
+                      ? "text-emerald-600 dark:text-emerald-300 nav-active"
+                      : "text-gray-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-300"
                   }`
                 }
               >
@@ -97,27 +97,27 @@ const Navbar = () => {
           </nav>
 
           {/* ─── Right Controls ─── */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             {/* Dark Mode Toggle */}
             <motion.button
               onClick={toggleDarkMode}
-              whileHover={{ scale: 1.1 }}
+              whileHover={{ scale: 1.15 }}
               whileTap={{ scale: 0.92 }}
-              className="p-2.5 rounded-full glass-sm text-slate-400 hover:text-violet-300 transition-colors duration-200"
+              className="p-3 rounded-full glass-sm bg-gradient-to-br from-emerald-600/20 to-teal-600/10 dark:from-emerald-500/15 dark:to-teal-500/10 text-gray-700 dark:text-slate-300 hover:text-emerald-700 dark:hover:text-emerald-200 transition-all duration-300 border border-gray-300/50 dark:border-emerald-500/20 shadow-lg shadow-emerald-500/10"
               aria-label="Toggle dark mode"
             >
               {darkMode
-                ? <FaSun  className="w-4 h-4 text-amber-400" />
-                : <FaMoon className="w-4 h-4" />
+                ? <FaSun  className="w-5 h-5 text-amber-500" />
+                : <FaMoon className="w-5 h-5 text-indigo-600" />
               }
             </motion.button>
 
             {/* ─── Mobile Hamburger ─── */}
             <motion.button
               onClick={() => setMobileOpen(true)}
-              whileHover={{ scale: 1.1 }}
+              whileHover={{ scale: 1.15 }}
               whileTap={{ scale: 0.92 }}
-              className="md:hidden p-2.5 rounded-full glass-sm text-slate-400 hover:text-violet-300 transition-colors"
+              className="md:hidden p-3 rounded-full glass-sm bg-gradient-to-br from-emerald-600/20 to-teal-600/10 dark:from-emerald-500/15 dark:to-teal-500/10 text-gray-700 dark:text-slate-300 hover:text-emerald-700 dark:hover:text-emerald-200 transition-all duration-300 border border-gray-300/50 dark:border-emerald-500/20"
             >
               <FaBars className="w-4 h-4" />
             </motion.button>
@@ -151,11 +151,11 @@ const Navbar = () => {
               }}
             >
               {/* Header */}
-              <div className="flex justify-between items-center px-6 py-5 border-b border-[rgba(139,92,246,0.15)]">
+              <div className="flex justify-between items-center px-6 py-5 border-b border-[rgba(16,185,129,0.15)]">
                 <span className="text-lg font-bold gradient-text">Menu</span>
                 <button
                   onClick={() => setMobileOpen(false)}
-                  className="p-2 rounded-full hover:bg-[rgba(139,92,246,0.15)] text-slate-400 hover:text-violet-300 transition"
+                  className="p-2 rounded-full hover:bg-[rgba(16,185,129,0.15)] text-slate-400 hover:text-emerald-300 transition"
                 >
                   <FaTimes className="w-4 h-4" />
                 </button>
@@ -180,10 +180,10 @@ const Navbar = () => {
                       end={to === "/"}
                       onClick={() => setMobileOpen(false)}
                       className={({ isActive }) =>
-                        `block py-4 px-6 text-sm font-semibold tracking-widest uppercase border-b border-[rgba(139,92,246,0.08)] transition-colors duration-200 ${
+                        `block py-4 px-6 text-sm font-semibold tracking-widest uppercase border-b border-[rgba(16,185,129,0.08)] transition-colors duration-200 ${
                           isActive
-                            ? "text-violet-300 bg-[rgba(139,92,246,0.1)]"
-                            : "text-slate-400 hover:text-violet-200 hover:bg-[rgba(139,92,246,0.06)]"
+                            ? "text-emerald-300 bg-[rgba(16,185,129,0.1)]"
+                            : "text-slate-400 hover:text-emerald-200 hover:bg-[rgba(16,185,129,0.06)]"
                         }`
                       }
                     >
@@ -200,14 +200,14 @@ const Navbar = () => {
                     <NavLink
                       to="/"
                       onClick={() => setMobileOpen(false)}
-                      className="flex items-center gap-3 py-4 px-6 border-b border-[rgba(139,92,246,0.08)] text-slate-400 hover:text-violet-300 transition"
+                      className="flex items-center gap-3 py-4 px-6 border-b border-[rgba(16,185,129,0.08)] text-slate-400 hover:text-emerald-300 transition"
                     >
                       <FaUserCircle /> My Profile
                     </NavLink>
                     <NavLink
                       to="/orders"
                       onClick={() => setMobileOpen(false)}
-                      className="flex items-center gap-3 py-4 px-6 border-b border-[rgba(139,92,246,0.08)] text-slate-400 hover:text-violet-300 transition"
+                      className="flex items-center gap-3 py-4 px-6 border-b border-[rgba(16,185,129,0.08)] text-slate-400 hover:text-emerald-300 transition"
                     >
                       <FaBoxOpen /> Orders
                     </NavLink>

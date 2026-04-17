@@ -76,8 +76,8 @@ const Hero = () => {
         >
           {/* Role badge */}
           <motion.div variants={itemVariants}>
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-violet-300 border border-violet-500/30 bg-violet-500/10 mb-3 sm:mb-5">
-              <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
+            <span className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full text-[10px] sm:text-xs uppercase tracking-[0.3em] font-bold text-emerald-300 border border-emerald-500/40 bg-gradient-to-r from-emerald-500/15 to-teal-500/10 mb-4 sm:mb-6 backdrop-blur-sm shadow-lg shadow-emerald-500/10">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               {hero.role}
             </span>
           </motion.div>
@@ -85,10 +85,10 @@ const Hero = () => {
           {/* Headline */}
           <motion.h1
             variants={itemVariants}
-            className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.08] tracking-tight mb-3 sm:mb-6"
+            className="text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[0.95] tracking-tighter mb-4 sm:mb-7"
           >
-            <span className="block text-slate-100">{hero.titlePrefix}</span>
-            <span className="block gradient-text glow-text mt-1">
+            <span className="block text-gray-900 dark:text-slate-50 font-black">{hero.titlePrefix}</span>
+            <span className="block gradient-text glow-text mt-2 sm:mt-3">
               {hero.highlightName}
             </span>
           </motion.h1>
@@ -96,20 +96,20 @@ const Hero = () => {
           {/* Subtitle */}
           <motion.p
             variants={itemVariants}
-            className="text-slate-400 text-[11px] sm:text-lg leading-relaxed mb-4 sm:mb-8 max-w-xl line-clamp-3 sm:line-clamp-none"
+            className="text-gray-600 dark:text-slate-300 text-sm sm:text-lg leading-relaxed mb-6 sm:mb-10 max-w-2xl font-medium"
           >
             {hero.subtitle}
           </motion.p>
 
           {/* CTA Buttons */}
-          <motion.div variants={itemVariants} className="flex flex-wrap gap-3">
-            <Link to="/projects" className="btn-primary text-[11px] sm:text-sm px-4 py-2 sm:px-7 sm:py-3.5">
-              <span className="flex items-center gap-2">
+          <motion.div variants={itemVariants} className="flex flex-wrap gap-4 sm:gap-5">
+            <Link to="/projects" className="btn-primary text-[12px] sm:text-sm px-5 py-2.5 sm:px-8 sm:py-3.5 font-bold">
+              <span className="flex items-center gap-2.5">
                 {hero.primaryCtaText} <FaEye className="text-xs" />
               </span>
             </Link>
-            <Link to="/contact" className="btn-outline text-[11px] sm:text-sm px-4 py-2 sm:px-7 sm:py-3.5">
-              <span className="flex items-center gap-2">
+            <Link to="/contact" className="btn-outline text-[12px] sm:text-sm px-5 py-2.5 sm:px-8 sm:py-3.5 font-bold">
+              <span className="flex items-center gap-2.5">
                 {hero.secondaryCtaText} <FaArrowRight className="text-xs" />
               </span>
             </Link>
@@ -118,12 +118,12 @@ const Hero = () => {
           {/* Stats */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-wrap gap-3 sm:gap-5 mt-6 sm:mt-12"
+            className="flex flex-wrap gap-4 sm:gap-6 mt-8 sm:mt-14"
           >
             {(hero.stats || []).map((stat, i) => (
               <div key={i} className="stat-item text-left">
-                <p className="text-base sm:text-3xl font-extrabold gradient-text leading-none">{stat.value}</p>
-                <p className="text-slate-500 text-[9px] sm:text-xs mt-1 tracking-wide">{stat.label}</p>
+                <p className="text-2xl sm:text-4xl font-black gradient-text leading-none">{stat.value}</p>
+                <p className="text-gray-600 dark:text-slate-400 text-[10px] sm:text-xs mt-2 tracking-widest font-semibold uppercase">{stat.label}</p>
               </div>
             ))}
           </motion.div>
@@ -149,7 +149,7 @@ const Hero = () => {
             {/* Gradient ring (static) */}
             <div className="absolute inset-5 rounded-full"
               style={{
-                background: "conic-gradient(from 180deg, #8b5cf6, #ec4899, #3b82f6, #8b5cf6)",
+                background: "conic-gradient(from 180deg, #10b981, #14b8a6, #06b6d4, #10b981)",
                 padding: "2px",
                 borderRadius: "50%",
               }}
@@ -158,7 +158,7 @@ const Hero = () => {
             </div>
 
             {/* Profile Image */}
-            <div className="absolute inset-7 rounded-full overflow-hidden img-glow border-2 border-violet-500/30 z-10">
+            <div className="absolute inset-7 rounded-full overflow-hidden img-glow border-2 border-emerald-500/30 z-10">
               <img
                 src={assets.about_img}
                 alt="Anshul Kaundal"
@@ -196,8 +196,8 @@ const Hero = () => {
         transition={{ delay: 2, duration: 2.5, repeat: Infinity }}
         className="absolute bottom-6 left-1/2 -translate-x-1/2"
       >
-        <div className="w-5 h-8 border-2 border-violet-500/50 rounded-full flex justify-center pt-2">
-          <div className="w-1 h-2 bg-gradient-to-b from-violet-400 to-pink-400 rounded-full" />
+        <div className="w-5 h-8 border-2 border-emerald-500/50 rounded-full flex justify-center pt-2">
+          <div className="w-1 h-2 bg-gradient-to-b from-emerald-400 to-teal-400 rounded-full" />
         </div>
       </motion.div>
     </motion.section>

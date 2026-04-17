@@ -40,14 +40,14 @@ const ContactForm = () => {
   const inputCls = (field) =>
     `w-full px-4 py-3.5 pl-11 rounded-xl outline-none text-sm transition-all duration-300 text-slate-100 placeholder-slate-500
      ${focused === field
-       ? 'border-violet-500/70 shadow-[0_0_0_3px_rgba(139,92,246,0.18),0_0_20px_rgba(139,92,246,0.1)]'
-       : 'border-[rgba(139,92,246,0.18)] hover:border-[rgba(139,92,246,0.32)]'
+       ? 'border-emerald-500/70 shadow-[0_0_0_3px_rgba(16,185,129,0.18),0_0_20px_rgba(16,185,129,0.1)]'
+       : 'border-[rgba(16,185,129,0.18)] hover:border-[rgba(16,185,129,0.32)]'
      }
      bg-[rgba(12,18,36,0.6)] backdrop-blur-md border`;
 
   return (
     <div
-      className="rounded-3xl p-6 sm:p-8 h-full border border-[rgba(139,92,246,0.15)] shadow-glass"
+      className="rounded-3xl p-6 sm:p-8 h-full border border-[rgba(16,185,129,0.15)] shadow-glass"
       style={{ background: 'rgba(10,14,28,0.72)', backdropFilter: 'blur(20px)' }}
     >
       <h3 className="text-xl sm:text-2xl font-extrabold text-slate-100 mb-1">Send a Message</h3>
@@ -57,7 +57,7 @@ const ContactForm = () => {
         {/* Name & Email */}
         <div className="grid md:grid-cols-2 gap-4">
           <div className="relative">
-            <FaUser className={`absolute left-4 top-1/2 -translate-y-1/2 text-xs transition-colors ${focused === 'name' ? 'text-violet-400' : 'text-slate-500'}`} />
+            <FaUser className={`absolute left-4 top-1/2 -translate-y-1/2 text-xs transition-colors ${focused === 'name' ? 'text-emerald-400' : 'text-slate-500'}`} />
             <input
               required
               value={form.name}
@@ -69,7 +69,7 @@ const ContactForm = () => {
             />
           </div>
           <div className="relative">
-            <FaEnvelope className={`absolute left-4 top-1/2 -translate-y-1/2 text-xs transition-colors ${focused === 'email' ? 'text-violet-400' : 'text-slate-500'}`} />
+            <FaEnvelope className={`absolute left-4 top-1/2 -translate-y-1/2 text-xs transition-colors ${focused === 'email' ? 'text-emerald-400' : 'text-slate-500'}`} />
             <input
               required
               type="email"
@@ -85,7 +85,7 @@ const ContactForm = () => {
 
         {/* Subject */}
         <div className="relative">
-          <FaPen className={`absolute left-4 top-1/2 -translate-y-1/2 text-xs transition-colors ${focused === 'subject' ? 'text-violet-400' : 'text-slate-500'}`} />
+          <FaPen className={`absolute left-4 top-1/2 -translate-y-1/2 text-xs transition-colors ${focused === 'subject' ? 'text-emerald-400' : 'text-slate-500'}`} />
           <input
             required
             value={form.subject}
@@ -110,8 +110,8 @@ const ContactForm = () => {
             w-full px-4 py-3.5 rounded-xl outline-none text-sm transition-all duration-300 resize-none
             text-slate-100 placeholder-slate-500 bg-[rgba(12,18,36,0.6)] backdrop-blur-md border
             ${focused === 'message'
-              ? 'border-violet-500/70 shadow-[0_0_0_3px_rgba(139,92,246,0.18),0_0_20px_rgba(139,92,246,0.1)]'
-              : 'border-[rgba(139,92,246,0.18)] hover:border-[rgba(139,92,246,0.32)]'
+              ? 'border-emerald-500/70 shadow-[0_0_0_3px_rgba(16,185,129,0.18),0_0_20px_rgba(16,185,129,0.1)]'
+              : 'border-[rgba(16,185,129,0.18)] hover:border-[rgba(16,185,129,0.32)]'
             }
           `}
         />
@@ -127,7 +127,7 @@ const ContactForm = () => {
             transition-all duration-300 text-sm relative overflow-hidden
             ${sent
               ? 'bg-emerald-600 shadow-[0_0_24px_rgba(16,185,129,0.35)]'
-              : 'bg-gradient-to-r from-violet-600 to-pink-600 shadow-[0_4px_20px_rgba(124,58,237,0.4)] hover:shadow-[0_8px_30px_rgba(124,58,237,0.55)]'
+              : 'bg-gradient-to-r from-emerald-600 to-teal-600 shadow-[0_4px_20px_rgba(16,185,129,0.4)] hover:shadow-[0_8px_30px_rgba(16,185,129,0.55)]'
             }
           `}
         >
@@ -168,7 +168,7 @@ const ContactForm = () => {
       </form>
 
       {/* Trust indicators */}
-      <div className="mt-6 pt-5 border-t border-[rgba(139,92,246,0.12)]">
+      <div className="mt-6 pt-5 border-t border-[rgba(16,185,129,0.12)]">
         <div className="flex items-center justify-center gap-6 text-xs text-slate-500">
           <span className="flex items-center gap-2">
             <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />

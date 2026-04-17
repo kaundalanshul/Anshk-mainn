@@ -20,7 +20,7 @@ const socialLinks = [
     icon: FaEnvelope,
     href: "mailto:kaundalanshul725@gmail.com",
     label: "Email",
-    hoverClass: "hover:bg-gradient-to-br hover:from-violet-500 hover:to-pink-500 hover:border-transparent",
+    hoverClass: "hover:bg-gradient-to-br hover:from-emerald-500 hover:to-teal-500 hover:border-transparent",
   },
 ];
 
@@ -76,7 +76,7 @@ const Footer = () => {
               <Link
                 key={label}
                 to={to}
-                className="text-slate-500 hover:text-violet-300 transition-colors duration-300"
+                className="text-slate-500 hover:text-emerald-300 transition-colors duration-300"
               >
                 {label}
               </Link>
@@ -116,7 +116,7 @@ const Footer = () => {
               whileHover={{ scale: 1.12, y: -2 }}
               whileTap={{ scale: 0.94 }}
               aria-label="Back to top"
-              className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-slate-400 border border-[rgba(139,92,246,0.2)] bg-[rgba(139,92,246,0.06)] hover:text-white hover:bg-violet-600 hover:border-violet-600 transition-all duration-300 text-xs sm:text-sm"
+              className="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-slate-400 border border-[rgba(16,185,129,0.2)] bg-[rgba(16,185,129,0.06)] hover:text-white hover:bg-emerald-600 hover:border-emerald-600 transition-all duration-300 text-xs sm:text-sm"
             >
               <FaArrowUp />
             </motion.button>

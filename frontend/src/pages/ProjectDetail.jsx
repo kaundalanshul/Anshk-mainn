@@ -31,7 +31,7 @@ const ProjectDetail = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 border-2 border-violet-500/30 border-t-violet-500 rounded-full animate-spin" />
+          <div className="w-12 h-12 border-2 border-emerald-500/30 border-t-emerald-500 rounded-full animate-spin" />
           <p className="text-slate-400 text-sm">Loading project...</p>
         </div>
       </div>
@@ -59,7 +59,7 @@ const ProjectDetail = () => {
       <div className="max-w-5xl mx-auto px-4 mb-6">
         <Link
           to="/projects"
-          className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-violet-300 transition-colors duration-200 group"
+          className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-emerald-300 transition-colors duration-200 group"
         >
           <FaArrowLeft className="text-xs transition-transform group-hover:-translate-x-1" />
           Back to Projects
@@ -112,7 +112,7 @@ const ProjectDetail = () => {
                     className="rounded-2xl p-3 sm:p-4 border border-[rgba(139,92,246,0.12)] bg-[rgba(139,92,246,0.05)]"
                   >
                     <div className="flex items-center gap-1.5 mb-1">
-                      <Icon className="text-violet-400 text-xs" />
+                      <Icon className="text-emerald-400 text-xs" />
                       <p className="text-xs text-slate-500 uppercase tracking-wider">{label}</p>
                     </div>
                     <p className="font-semibold text-sm text-slate-200">{value}</p>

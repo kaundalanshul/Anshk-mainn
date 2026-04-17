@@ -40,38 +40,38 @@ const ProjectsGrid = () => {
 
   return (
     <section id="projects" className="py-4 md:py-12">
-      <div className="relative overflow-hidden rounded-3xl glass border border-[rgba(139,92,246,0.15)] shadow-glass">
+      <div className="relative overflow-hidden rounded-3xl glass border border-gray-200/50 dark:border-[rgba(16,185,129,0.2)] shadow-xl shadow-gray-200/20 dark:shadow-emerald-900/20 bg-white/60 dark:bg-[rgba(12,18,36,0.4)]">
 
         {/* Background accent */}
-        <div className="absolute top-0 right-0 w-1/3 h-full pointer-events-none"
-          style={{ background: 'linear-gradient(to left, rgba(139,92,246,0.07), transparent)' }} />
-        <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full blur-3xl pointer-events-none"
-          style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%)' }} />
+        <div className="absolute top-0 right-0 w-1/3 h-full pointer-events-none opacity-30 dark:opacity-50"
+          style={{ background: 'linear-gradient(to left, rgba(124,58,237,0.15), transparent)' }} />
+        <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full blur-3xl pointer-events-none opacity-30 dark:opacity-60"
+          style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%)' }} />
 
-        <div className="px-5 py-7 md:px-12 md:py-12">
+        <div className="px-6 py-8 md:px-14 md:py-14">
 
           {/* Header row */}
-          <div className="flex items-end justify-between mb-8 md:mb-10">
+          <div className="flex items-end justify-between mb-10 md:mb-12">
             <div>
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] uppercase tracking-[0.22em] font-semibold text-violet-300 border border-violet-500/25 bg-violet-500/08 mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
-                Work
+              <span className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full text-[10px] uppercase tracking-[0.35em] font-bold text-emerald-600 dark:text-emerald-300 border border-emerald-400/40 dark:border-emerald-500/30 bg-gradient-to-r from-emerald-500/12 to-teal-500/8 dark:from-emerald-500/12 dark:to-teal-500/8 mb-4">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                Featured Work
               </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold gradient-text leading-tight">
-                Featured Projects
+              <h2 className="text-4xl sm:text-5xl font-black gradient-text leading-tight">
+                Latest Projects
               </h2>
             </div>
             <Link
               to="/projects"
-              className="hidden sm:flex items-center gap-2 text-sm text-violet-400 hover:text-violet-200 font-medium transition-colors group"
+              className="hidden sm:flex items-center gap-2.5 text-sm text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 font-bold transition-all group"
             >
-              View all
-              <FaArrowRight className="text-xs transition-transform group-hover:translate-x-1" />
+              Explore All
+              <FaArrowRight className="text-xs transition-transform group-hover:translate-x-2" />
             </Link>
           </div>
 
           {/* Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {loading ? (
               Array.from({ length: 3 }).map((_, i) => (
                 <div
@@ -117,7 +117,7 @@ const ProjectsGrid = () => {
                       <div className="absolute inset-0 transition-opacity duration-400"
                         style={{ background: 'linear-gradient(to top, rgba(7,11,20,0.95) 0%, rgba(7,11,20,0.4) 50%, transparent 100%)' }} />
 
-                      {/* Purple glow on hover */}
+                      {/* Emerald glow on hover */}
                       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400"
                         style={{ background: 'linear-gradient(to top, rgba(139,92,246,0.25) 0%, transparent 60%)' }} />
 
@@ -131,7 +131,7 @@ const ProjectsGrid = () => {
                       {/* Content overlay */}
                       <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-2 group-hover:translate-y-0 transition-transform duration-350">
                         <h3 className="font-bold text-xl text-white mb-2 leading-tight">{p.title}</h3>
-                        <div className="flex items-center gap-2 text-violet-300 text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="flex items-center gap-2 text-emerald-300 text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                           View Case Study
                           <FaArrowRight className="text-xs transition-transform group-hover:translate-x-1.5" />
                         </div>

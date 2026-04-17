@@ -68,13 +68,13 @@ const AboutSection = ({ name: propName, role: propRole, bio: propBio }) => {
                 />
 
                 {/* Orbit rings */}
-                <div className="absolute inset-0 rounded-full border border-violet-500/20 scale-[1.15] animate-spin-slow" />
+                <div className="absolute inset-0 rounded-full border border-emerald-500/20 scale-[1.15] animate-spin-slow" />
                 <div className="absolute inset-0 rounded-full border border-pink-500/12 scale-[1.28] animate-spin-slower" />
 
                 {/* Conic gradient border wrapper */}
                 <div
                   className="relative rounded-full p-[3px]"
-                  style={{ background: 'conic-gradient(from 0deg, #8b5cf6, #ec4899, #3b82f6, #8b5cf6)' }}
+                  style={{ background: 'conic-gradient(from 0deg, #10b981, #14b8a6, #06b6d4, #10b981)' }}
                 >
                   <img
                     src={assets.profile || assets.about_img}
@@ -104,8 +104,8 @@ const AboutSection = ({ name: propName, role: propRole, bio: propBio }) => {
               className="text-center md:text-left"
             >
               {/* Section label */}
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] uppercase tracking-[0.22em] font-semibold text-violet-300 border border-violet-500/25 bg-violet-500/08 mb-4">
-                <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] uppercase tracking-[0.22em] font-semibold text-emerald-300 border border-emerald-500/25 bg-emerald-500/08 mb-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 About Me
               </span>
 
