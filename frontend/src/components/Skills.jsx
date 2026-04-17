@@ -10,6 +10,8 @@ const skills = [
   { name: 'Node.js',     emoji: '🌿' },
   { name: 'MongoDB',     emoji: '🍃' },
   { name: 'Tailwind',    emoji: '💨' },
+  { name: 'TypeScript',  emoji: '🔷' },
+  { name: 'Express',     emoji: '🚀' },
 ];
 
 const containerVariants = {
@@ -30,8 +32,8 @@ const Skills = () => {
       <div className="absolute -bottom-12 -left-12 w-40 h-40 rounded-full pointer-events-none"
         style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.14) 0%, transparent 70%)' }} />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-5 py-6 md:px-12 md:py-9">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-5 md:gap-8">
+      <div className="relative z-10 max-w-6xl mx-auto px-5 py-7 md:px-12 md:py-10">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 md:gap-8">
 
           {/* ── Left: Heading ── */}
           <motion.div
@@ -41,7 +43,15 @@ const Skills = () => {
             transition={{ duration: 0.55 }}
             className="text-center md:text-left shrink-0"
           >
-            <h3 className="text-2xl font-extrabold gradient-text mb-1">
+            {/* Formal section label */}
+            <div className="flex items-center gap-2 justify-center md:justify-start mb-2">
+              <span className="section-num">03</span>
+              <span className="text-[10px] uppercase tracking-[0.25em] text-slate-500 font-semibold">Expertise</span>
+            </div>
+            <h3
+              className="text-2xl font-extrabold gradient-text mb-1"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
               Skills &amp; Tools
             </h3>
             <p className="text-slate-500 text-xs sm:text-sm max-w-[220px]">

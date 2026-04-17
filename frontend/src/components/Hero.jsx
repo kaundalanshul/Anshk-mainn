@@ -24,6 +24,12 @@ const defaultHero = {
   ],
 };
 
+const ROLES = [
+  "FULL STACK DEVELOPER",
+  "UI / UX DESIGNER",
+  "CREATIVE CODER",
+];
+
 /* Stagger animation variants */
 const containerVariants = {
   hidden: {},
@@ -34,8 +40,36 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
 };
 
+/* Typewriter hook */
+function useTypewriter(texts, speed = 70, pause = 2200) {
+  const [display, setDisplay] = useState("");
+  const [idx, setIdx]       = useState(0);
+  const [charIdx, setCharIdx] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    const current = texts[idx];
+    let timer;
+    if (!deleting && charIdx < current.length) {
+      timer = setTimeout(() => setCharIdx((c) => c + 1), speed);
+    } else if (!deleting && charIdx === current.length) {
+      timer = setTimeout(() => setDeleting(true), pause);
+    } else if (deleting && charIdx > 0) {
+      timer = setTimeout(() => setCharIdx((c) => c - 1), speed / 2);
+    } else {
+      setDeleting(false);
+      setIdx((i) => (i + 1) % texts.length);
+    }
+    setDisplay(current.slice(0, charIdx));
+    return () => clearTimeout(timer);
+  }, [charIdx, deleting, idx, texts, speed, pause]);
+
+  return display;
+}
+
 const Hero = () => {
   const [hero, setHero] = useState(defaultHero);
+  const typedRole = useTypewriter(ROLES);
 
   useEffect(() => {
     const fetchHero = async () => {
@@ -74,24 +108,39 @@ const Hero = () => {
           animate="visible"
           className="w-[58%] lg:w-1/2 text-left"
         >
-          {/* Role badge */}
+          {/* Role badge with typewriter */}
           <motion.div variants={itemVariants}>
             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-violet-300 border border-violet-500/30 bg-violet-500/10 mb-3 sm:mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
-              {hero.role}
+              <span style={{ minWidth: `${Math.max(...ROLES.map((r) => r.length))}ch` }}>{typedRole}</span>
+              <span className="typewriter-cursor hidden sm:inline-block" />
             </span>
           </motion.div>
 
-          {/* Headline */}
+          {/* Headline — serif for formality */}
           <motion.h1
             variants={itemVariants}
             className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.08] tracking-tight mb-3 sm:mb-6"
           >
-            <span className="block text-slate-100">{hero.titlePrefix}</span>
-            <span className="block gradient-text glow-text mt-1">
+            <span className="block text-slate-100 text-lg sm:text-2xl font-medium tracking-widest mb-1 font-sans">
+              {hero.titlePrefix}
+            </span>
+            <span
+              className="block gradient-text glow-text mt-1"
+              style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+            >
               {hero.highlightName}
             </span>
           </motion.h1>
+
+          {/* Subtle horizontal rule */}
+          <motion.div variants={itemVariants} className="mb-4 sm:mb-6">
+            <div className="flex items-center gap-3 max-w-xs">
+              <div className="h-px flex-1 bg-gradient-to-r from-violet-500/60 to-transparent" />
+              <span className="text-violet-400/60 text-[10px] tracking-[0.4em] font-semibold uppercase">Portfolio</span>
+              <div className="h-px w-6 bg-violet-500/30" />
+            </div>
+          </motion.div>
 
           {/* Subtitle */}
           <motion.p
@@ -121,9 +170,14 @@ const Hero = () => {
             className="flex flex-wrap gap-3 sm:gap-5 mt-6 sm:mt-12"
           >
             {(hero.stats || []).map((stat, i) => (
-              <div key={i} className="stat-item text-left">
-                <p className="text-base sm:text-3xl font-extrabold gradient-text leading-none">{stat.value}</p>
-                <p className="text-slate-500 text-[9px] sm:text-xs mt-1 tracking-wide">{stat.label}</p>
+              <div
+                key={i}
+                role="group"
+                aria-label={`${stat.label}: ${stat.value}`}
+                className="stat-item text-left relative overflow-hidden shimmer-once"
+              >
+                <p className="text-base sm:text-3xl font-extrabold gradient-text leading-none" aria-hidden="true">{stat.value}</p>
+                <p className="text-slate-500 text-[9px] sm:text-xs mt-1 tracking-wide uppercase">{stat.label}</p>
               </div>
             ))}
           </motion.div>
@@ -172,8 +226,8 @@ const Hero = () => {
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               className="absolute -bottom-2 -right-2 sm:bottom-4 sm:right-0 z-20 glass rounded-xl sm:rounded-2xl p-2 sm:p-4 shadow-glow-sm hidden sm:block"
             >
-              <p className="text-[10px] sm:text-xs text-slate-400">Experience</p>
-              <p className="text-base sm:text-2xl font-extrabold gradient-text leading-none">2+ Yrs</p>
+              <p className="text-[10px] sm:text-xs text-slate-400 uppercase tracking-widest">Experience</p>
+              <p className="text-base sm:text-2xl font-extrabold gradient-text leading-none" style={{ fontFamily: "'Playfair Display', serif" }}>2+ Yrs</p>
             </motion.div>
 
             {/* Floating pill top-left */}

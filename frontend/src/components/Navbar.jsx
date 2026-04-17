@@ -67,13 +67,20 @@ const Navbar = () => {
         <div className="max-w-[1400px] mx-auto px-4 sm:px-8 flex items-center justify-between">
 
           {/* ─── Brand Logo ─── */}
-          <Link to="/" className="flex items-center gap-2 group">
-            <span className="text-xl sm:text-2xl font-bold gradient-text tracking-tight">
-              AK
-            </span>
-            <span className="hidden sm:block text-sm text-slate-400 font-medium tracking-widest uppercase">
-              Portfolio
-            </span>
+          <Link to="/" className="flex items-center gap-2.5 group">
+            <div className="relative flex items-center justify-center w-9 h-9 rounded-xl overflow-hidden"
+              style={{ background: "linear-gradient(135deg, #7c3aed, #db2777)" }}>
+              <span className="text-white font-black text-sm tracking-tight">AK</span>
+            </div>
+            <div className="hidden sm:block">
+              <span className="block text-sm font-bold text-slate-100 leading-tight tracking-tight"
+                style={{ fontFamily: "'Playfair Display', serif" }}>
+                Anshul Kaundal
+              </span>
+              <span className="block text-[9px] text-slate-500 font-medium tracking-[0.25em] uppercase leading-tight">
+                Full Stack Dev
+              </span>
+            </div>
           </Link>
 
           {/* ─── Desktop Nav Links ─── */}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,13 +13,15 @@ import Contact from "./pages/Contact";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import ProjectDetail from "./pages/ProjectDetail";
+import { ShopContext } from "./context/ShopContext";
 
 const App = () => {
   const location = useLocation();
   const hideFooter = location.pathname === "/contact";
+  const { darkMode } = useContext(ShopContext);
 
   return (
-    <div className="dark">
+    <div className={darkMode ? "dark" : ""}>
       {/* ─── Animated Background Layer ─── */}
       <div className="bg-animated" aria-hidden="true" />
       <div className="blob-mid" aria-hidden="true" />
