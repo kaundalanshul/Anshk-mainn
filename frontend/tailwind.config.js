@@ -16,13 +16,25 @@ export default {
           DEFAULT: '#070b14',
           card:    '#0c1224',
           glass:   'rgba(12,18,36,0.65)',
+          light: '#f8f9fb',
+          light_card: 'rgba(255,255,255,0.85)',
         },
         brand: {
           purple: '#8b5cf6',
           pink:   '#ec4899',
           blue:   '#3b82f6',
           cyan:   '#06b6d4',
+          dark_purple: '#7c3aed',
+          dark_pink: '#db2777',
         },
+      },
+      textColor: {
+        theme: 'var(--text-color)',
+        'theme-light': 'var(--text-light)',
+      },
+      backgroundColor: {
+        'theme-surface': 'var(--surface)',
+        'theme-card': 'var(--surface-card)',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

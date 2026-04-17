@@ -19,18 +19,23 @@ export const currency = '\u20B9'
 const App = () => {
 
   const [token, setToken] = useState(localStorage.getItem('token')?localStorage.getItem('token'):'');
+  const [adminEmail, setAdminEmail] = useState(localStorage.getItem('adminEmail')?localStorage.getItem('adminEmail'):'');
 
   useEffect(()=>{
     localStorage.setItem('token',token)
   },[token])
 
+  useEffect(()=>{
+    localStorage.setItem('adminEmail',adminEmail)
+  },[adminEmail])
+
   return (
     <div className='bg-gray-50 min-h-screen'>
       <ToastContainer />
       {token === ""
-        ? <Login setToken={setToken} />
+        ? <Login setToken={setToken} setAdminEmail={setAdminEmail} />
         : <>
-          <Navbar setToken={setToken} />
+          <Navbar setToken={setToken} adminEmail={adminEmail} />
           <hr />
           <div className='flex w-full'>
             <Sidebar />

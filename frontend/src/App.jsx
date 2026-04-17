@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ShopContext } from "./context/ShopContext";
 
 // Layout Components
 import Footer from "./components/Footer";
@@ -16,10 +17,11 @@ import ProjectDetail from "./pages/ProjectDetail";
 
 const App = () => {
   const location = useLocation();
+  const { darkMode } = useContext(ShopContext);
   const hideFooter = location.pathname === "/contact";
 
   return (
-    <div className="dark">
+    <div className={darkMode ? "dark" : "light"}>
       {/* ─── Animated Background Layer ─── */}
       <div className="bg-animated" aria-hidden="true" />
       <div className="blob-mid" aria-hidden="true" />
