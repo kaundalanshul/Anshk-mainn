@@ -53,11 +53,15 @@ const ProjectsGrid = () => {
           {/* Header row */}
           <div className="flex items-end justify-between mb-8 md:mb-10">
             <div>
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] uppercase tracking-[0.22em] font-semibold text-violet-300 border border-violet-500/25 bg-violet-500/08 mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
-                Work
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold gradient-text leading-tight">
+              {/* Formal numbered label */}
+              <div className="flex items-center gap-2 mb-2">
+                <span className="section-num">02</span>
+                <span className="text-[10px] uppercase tracking-[0.25em] text-slate-500 font-semibold">Work</span>
+              </div>
+              <h2
+                className="text-3xl sm:text-4xl font-extrabold gradient-text leading-tight"
+                style={{ fontFamily: "'Playfair Display', serif" }}
+              >
                 Featured Projects
               </h2>
             </div>
@@ -100,9 +104,7 @@ const ProjectsGrid = () => {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.15 }}
-                  whileHover={{ y: -8 }}
-                  className="card-lift rounded-2xl overflow-hidden group cursor-pointer border border-[rgba(139,92,246,0.12)] relative"
-                  style={{ background: 'rgba(10,14,28,0.7)' }}
+                  className="card-premium group cursor-pointer"
                 >
                   <Link to={`/project/${p._id || p.id}`}>
                     {/* Image */}

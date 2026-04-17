@@ -21,7 +21,7 @@ const ShopContextProvider = ({ children }) => {
   const [reviews, setReviews] = useState({});
   const [promoCode, setPromoCode] = useState("");
   const [discount, setDiscount] = useState(0);
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
 
   // 🌟 Wishlist - Load & Save
   useEffect(() => {
@@ -36,14 +36,12 @@ const ShopContextProvider = ({ children }) => {
   // 🌙 Dark Mode - Load & Save
   useEffect(() => {
     const stored = localStorage.getItem("darkMode");
-    if (stored) {
-      const isDark = JSON.parse(stored);
-      setDarkMode(isDark);
-      if (isDark) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
+    const isDark = stored !== null ? JSON.parse(stored) : true; // default dark
+    setDarkMode(isDark);
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
     }
   }, []);
 

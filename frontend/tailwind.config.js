@@ -10,6 +10,8 @@ export default {
       fontFamily: {
         sans: ['Inter', 'Outfit', 'sans-serif'],
         outfit: ['Outfit', 'sans-serif'],
+        playfair: ['"Playfair Display"', 'Georgia', 'serif'],
+        serif: ['"Playfair Display"', 'Georgia', 'serif'],
       },
       colors: {
         surface: {
@@ -22,6 +24,7 @@ export default {
           pink:   '#ec4899',
           blue:   '#3b82f6',
           cyan:   '#06b6d4',
+          gold:   '#f59e0b',
         },
       },
       backgroundImage: {

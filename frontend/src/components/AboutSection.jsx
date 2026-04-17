@@ -103,13 +103,16 @@ const AboutSection = ({ name: propName, role: propRole, bio: propBio }) => {
               transition={{ duration: 0.7, delay: 0.15 }}
               className="text-center md:text-left"
             >
-              {/* Section label */}
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] uppercase tracking-[0.22em] font-semibold text-violet-300 border border-violet-500/25 bg-violet-500/08 mb-4">
-                <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
-                About Me
-              </span>
+              {/* Section label — formal numbered */}
+              <div className="flex items-center gap-2 justify-center md:justify-start mb-3">
+                <span className="section-num">01</span>
+                <span className="text-[10px] uppercase tracking-[0.25em] text-slate-500 font-semibold">About Me</span>
+              </div>
 
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-100 mb-2 leading-tight">
+              <h2
+                className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-100 mb-2 leading-tight"
+                style={{ fontFamily: "'Playfair Display', serif" }}
+              >
                 Hi, I'm{' '}
                 <span className="gradient-text glow-text">{name}</span>
               </h2>
